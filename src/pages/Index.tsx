@@ -84,16 +84,15 @@ function HorizontalLogo({ font = "'Bebas Neue', sans-serif" }: { font?: string }
       }} />
 
       {/* Hero */}
-      <div className="relative flex-shrink-0" style={{ width: 100, height: 100 }}>
+      <div className="relative flex-shrink-0" style={{ width: 110, height: 130 }}>
         <div style={{
           position: "absolute", inset: -10,
-          background: "radial-gradient(circle, rgba(255,215,0,0.35) 0%, rgba(255,100,0,0.1) 50%, transparent 70%)",
-          borderRadius: "50%",
+          background: "radial-gradient(ellipse, rgba(255,215,0,0.3) 0%, rgba(255,100,0,0.08) 50%, transparent 70%)",
         }} />
         <img
           src={HERO_IMG}
           alt="Спортсмен с факелом и медалью"
-          style={{ width: 100, height: 100, borderRadius: "50%", objectFit: "cover", objectPosition: "center", position: "relative", zIndex: 1, border: "2px solid rgba(255,215,0,0.55)" }}
+          style={{ width: 110, height: 130, borderRadius: 14, objectFit: "cover", objectPosition: "center", position: "relative", zIndex: 1, border: "2px solid rgba(255,215,0,0.5)" }}
         />
       </div>
 
@@ -185,21 +184,15 @@ function VerticalLogo({ font = "'Bebas Neue', sans-serif" }: { font?: string }) 
       </div>
 
       {/* Hero */}
-      <div className="relative" style={{ width: 124, height: 124 }}>
+      <div className="relative" style={{ width: 140, height: 160 }}>
         <div style={{
           position: "absolute", inset: -12,
-          background: "radial-gradient(circle, rgba(255,215,0,0.32) 0%, rgba(255,100,0,0.08) 50%, transparent 70%)",
-          borderRadius: "50%",
-        }} />
-        <div style={{
-          position: "absolute", inset: -2,
-          borderRadius: "50%",
-          border: "2px solid rgba(255,215,0,0.45)",
+          background: "radial-gradient(ellipse, rgba(255,215,0,0.28) 0%, rgba(255,100,0,0.07) 50%, transparent 70%)",
         }} />
         <img
           src={HERO_IMG}
           alt="Спортсмен с факелом и медалью"
-          style={{ width: 124, height: 124, borderRadius: "50%", objectFit: "cover", objectPosition: "center", position: "relative", zIndex: 1 }}
+          style={{ width: 140, height: 160, borderRadius: 16, objectFit: "cover", objectPosition: "center", position: "relative", zIndex: 1, border: "2px solid rgba(255,215,0,0.45)" }}
         />
       </div>
 
@@ -260,16 +253,15 @@ function SquareLogo({ font = "'Bebas Neue', sans-serif" }: { font?: string }) {
       <div style={{ position: "absolute", bottom: 14, right: 14 }}><StarAccent /></div>
 
       {/* Hero */}
-      <div className="relative" style={{ width: 100, height: 100, marginBottom: 10 }}>
+      <div className="relative" style={{ width: 110, height: 120, marginBottom: 8 }}>
         <div style={{
           position: "absolute", inset: -8,
-          background: "radial-gradient(circle, rgba(255,215,0,0.3) 0%, rgba(255,100,0,0.08) 50%, transparent 70%)",
-          borderRadius: "50%",
+          background: "radial-gradient(ellipse, rgba(255,215,0,0.28) 0%, rgba(255,100,0,0.07) 50%, transparent 70%)",
         }} />
         <img
           src={HERO_IMG}
           alt="Спортсмен с факелом и медалью"
-          style={{ width: 100, height: 100, borderRadius: "50%", objectFit: "cover", objectPosition: "center", position: "relative", zIndex: 1, border: "2px solid rgba(255,215,0,0.5)" }}
+          style={{ width: 110, height: 120, borderRadius: 12, objectFit: "cover", objectPosition: "center", position: "relative", zIndex: 1, border: "2px solid rgba(255,215,0,0.5)" }}
         />
       </div>
 
