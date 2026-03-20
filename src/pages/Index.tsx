@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const MEDAL_IMG = "https://cdn.poehali.dev/projects/022a832f-9252-4d4c-9f92-ce882da237a1/files/38260c4d-e2a9-4e99-8150-cf7c16bd55f6.jpg";
 const ATHLETE_IMG = "https://cdn.poehali.dev/projects/022a832f-9252-4d4c-9f92-ce882da237a1/files/150ffb3f-7a4e-4c74-af8c-48a29b7488d9.jpg";
+const HERO_IMG = "https://cdn.poehali.dev/projects/022a832f-9252-4d4c-9f92-ce882da237a1/files/cb1eb49c-487c-4074-b1d8-b91d426ec09b.jpg";
 
 const FONTS = [
   { family: "'Bebas Neue', sans-serif", name: "Bebas Neue", tag: "Текущий" },
@@ -82,23 +83,18 @@ function HorizontalLogo({ font = "'Bebas Neue', sans-serif" }: { font?: string }
         transform: "skewX(-20deg)",
       }} />
 
-      {/* Medal */}
-      <div className="relative flex-shrink-0" style={{ width: 92, height: 92 }}>
+      {/* Hero */}
+      <div className="relative flex-shrink-0" style={{ width: 100, height: 100 }}>
         <div style={{
-          position: "absolute", inset: -8,
-          background: "radial-gradient(circle, rgba(255,215,0,0.4) 0%, transparent 70%)",
+          position: "absolute", inset: -10,
+          background: "radial-gradient(circle, rgba(255,215,0,0.35) 0%, rgba(255,100,0,0.1) 50%, transparent 70%)",
           borderRadius: "50%",
         }} />
         <img
-          src={MEDAL_IMG}
-          alt="Золотая медаль"
-          style={{ width: 92, height: 92, borderRadius: "50%", objectFit: "cover", position: "relative", zIndex: 1, border: "2px solid rgba(255,215,0,0.5)" }}
+          src={HERO_IMG}
+          alt="Спортсмен с факелом и медалью"
+          style={{ width: 100, height: 100, borderRadius: "50%", objectFit: "cover", objectPosition: "center", position: "relative", zIndex: 1, border: "2px solid rgba(255,215,0,0.55)" }}
         />
-        <div style={{
-          position: "absolute", top: 7, left: 13, width: 20, height: 8,
-          background: "rgba(255,255,255,0.45)", borderRadius: "50%",
-          filter: "blur(3px)", transform: "rotate(-30deg)", zIndex: 2,
-        }} />
       </div>
 
       {/* Text block */}
@@ -188,11 +184,11 @@ function VerticalLogo({ font = "'Bebas Neue', sans-serif" }: { font?: string }) 
         <StarAccent />
       </div>
 
-      {/* Medal */}
-      <div className="relative" style={{ width: 116, height: 116 }}>
+      {/* Hero */}
+      <div className="relative" style={{ width: 124, height: 124 }}>
         <div style={{
-          position: "absolute", inset: -10,
-          background: "radial-gradient(circle, rgba(255,215,0,0.35) 0%, transparent 70%)",
+          position: "absolute", inset: -12,
+          background: "radial-gradient(circle, rgba(255,215,0,0.32) 0%, rgba(255,100,0,0.08) 50%, transparent 70%)",
           borderRadius: "50%",
         }} />
         <div style={{
@@ -201,15 +197,10 @@ function VerticalLogo({ font = "'Bebas Neue', sans-serif" }: { font?: string }) 
           border: "2px solid rgba(255,215,0,0.45)",
         }} />
         <img
-          src={MEDAL_IMG}
-          alt="Золотая медаль"
-          style={{ width: 116, height: 116, borderRadius: "50%", objectFit: "cover", position: "relative", zIndex: 1 }}
+          src={HERO_IMG}
+          alt="Спортсмен с факелом и медалью"
+          style={{ width: 124, height: 124, borderRadius: "50%", objectFit: "cover", objectPosition: "center", position: "relative", zIndex: 1 }}
         />
-        <div style={{
-          position: "absolute", top: 9, left: 17, width: 24, height: 10,
-          background: "rgba(255,255,255,0.38)", borderRadius: "50%",
-          filter: "blur(4px)", transform: "rotate(-30deg)", zIndex: 2,
-        }} />
       </div>
 
       {/* Divider */}
@@ -268,23 +259,18 @@ function SquareLogo({ font = "'Bebas Neue', sans-serif" }: { font?: string }) {
       <div style={{ position: "absolute", bottom: 14, left: 14 }}><StarAccent /></div>
       <div style={{ position: "absolute", bottom: 14, right: 14 }}><StarAccent /></div>
 
-      {/* Medal */}
-      <div className="relative" style={{ width: 94, height: 94, marginBottom: 10 }}>
+      {/* Hero */}
+      <div className="relative" style={{ width: 100, height: 100, marginBottom: 10 }}>
         <div style={{
           position: "absolute", inset: -8,
-          background: "radial-gradient(circle, rgba(255,215,0,0.3) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(255,215,0,0.3) 0%, rgba(255,100,0,0.08) 50%, transparent 70%)",
           borderRadius: "50%",
         }} />
         <img
-          src={MEDAL_IMG}
-          alt="Золотая медаль"
-          style={{ width: 94, height: 94, borderRadius: "50%", objectFit: "cover", position: "relative", zIndex: 1, border: "2px solid rgba(255,215,0,0.45)" }}
+          src={HERO_IMG}
+          alt="Спортсмен с факелом и медалью"
+          style={{ width: 100, height: 100, borderRadius: "50%", objectFit: "cover", objectPosition: "center", position: "relative", zIndex: 1, border: "2px solid rgba(255,215,0,0.5)" }}
         />
-        <div style={{
-          position: "absolute", top: 7, left: 14, width: 20, height: 8,
-          background: "rgba(255,255,255,0.38)", borderRadius: "50%",
-          filter: "blur(3px)", transform: "rotate(-30deg)", zIndex: 2,
-        }} />
       </div>
 
       {/* Title */}
