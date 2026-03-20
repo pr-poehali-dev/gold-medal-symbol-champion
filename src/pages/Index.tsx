@@ -3,6 +3,19 @@ import { useState } from "react";
 const MEDAL_IMG = "https://cdn.poehali.dev/projects/022a832f-9252-4d4c-9f92-ce882da237a1/files/38260c4d-e2a9-4e99-8150-cf7c16bd55f6.jpg";
 const ATHLETE_IMG = "https://cdn.poehali.dev/projects/022a832f-9252-4d4c-9f92-ce882da237a1/files/150ffb3f-7a4e-4c74-af8c-48a29b7488d9.jpg";
 
+const FONTS = [
+  { family: "'Bebas Neue', sans-serif", name: "Bebas Neue", tag: "Текущий" },
+  { family: "'Russo One', sans-serif", name: "Russo One", tag: "Мощный" },
+  { family: "'Unbounded', sans-serif", name: "Unbounded", tag: "Широкий" },
+  { family: "'Teko', sans-serif", name: "Teko", tag: "Атлетичный" },
+  { family: "'Exo 2', sans-serif", name: "Exo 2", tag: "Технологичный" },
+  { family: "'Barlow Condensed', sans-serif", name: "Barlow Condensed", tag: "Динамичный" },
+  { family: "'Saira Condensed', sans-serif", name: "Saira Condensed", tag: "Быстрый" },
+  { family: "'Chakra Petch', sans-serif", name: "Chakra Petch", tag: "Кибер" },
+  { family: "'Rajdhani', sans-serif", name: "Rajdhani", tag: "Боевой" },
+  { family: "'Oswald', sans-serif", name: "Oswald", tag: "Классика" },
+];
+
 type Layout = "horizontal" | "vertical" | "square";
 
 const layouts: { id: Layout; label: string; desc: string }[] = [
@@ -45,7 +58,7 @@ function StarAccent() {
   );
 }
 
-function HorizontalLogo() {
+function HorizontalLogo({ font = "'Bebas Neue', sans-serif" }: { font?: string }) {
   return (
     <div
       className="relative flex items-center gap-6 px-10 py-6 overflow-hidden"
@@ -105,7 +118,7 @@ function HorizontalLogo() {
           <StarAccent />
         </div>
         <div style={{
-          fontFamily: "'Bebas Neue', sans-serif",
+          fontFamily: font,
           fontSize: 52,
           lineHeight: 1,
           letterSpacing: "0.05em",
@@ -128,7 +141,7 @@ function HorizontalLogo() {
   );
 }
 
-function VerticalLogo() {
+function VerticalLogo({ font = "'Bebas Neue', sans-serif" }: { font?: string }) {
   return (
     <div
       className="relative flex flex-col items-center gap-4 px-10 py-10 overflow-hidden"
@@ -207,7 +220,7 @@ function VerticalLogo() {
 
       {/* Title */}
       <div style={{
-        fontFamily: "'Bebas Neue', sans-serif",
+        fontFamily: font,
         fontSize: 48,
         lineHeight: 1,
         letterSpacing: "0.08em",
@@ -230,7 +243,7 @@ function VerticalLogo() {
   );
 }
 
-function SquareLogo() {
+function SquareLogo({ font = "'Bebas Neue', sans-serif" }: { font?: string }) {
   return (
     <div
       className="relative flex flex-col items-center justify-center overflow-hidden"
@@ -276,7 +289,7 @@ function SquareLogo() {
 
       {/* Title */}
       <div style={{
-        fontFamily: "'Bebas Neue', sans-serif",
+        fontFamily: font,
         fontSize: 36,
         lineHeight: 1,
         letterSpacing: "0.1em",
@@ -302,6 +315,8 @@ function SquareLogo() {
 
 const Index = () => {
   const [active, setActive] = useState<Layout>("horizontal");
+  const [activeFont, setActiveFont] = useState(FONTS[0].family);
+  const [showFonts, setShowFonts] = useState(false);
 
   return (
     <div
@@ -397,13 +412,71 @@ const Index = () => {
             {layouts.find(l => l.id === active)?.desc}
           </div>
 
-          {active === "horizontal" && <HorizontalLogo />}
-          {active === "vertical" && <VerticalLogo />}
-          {active === "square" && <SquareLogo />}
+          {active === "horizontal" && <HorizontalLogo font={activeFont} />}
+          {active === "vertical" && <VerticalLogo font={activeFont} />}
+          {active === "square" && <SquareLogo font={activeFont} />}
+        </div>
+
+        {/* Font picker */}
+        <div className="mt-8 w-full max-w-2xl">
+          <button
+            onClick={() => setShowFonts(!showFonts)}
+            style={{
+              display: "flex", alignItems: "center", gap: 8,
+              margin: "0 auto",
+              fontFamily: "'Oswald', sans-serif",
+              fontSize: 12, letterSpacing: "0.2em", textTransform: "uppercase",
+              color: "rgba(200,150,255,0.6)",
+              background: "none", border: "none", cursor: "pointer",
+              padding: "6px 16px",
+            }}
+          >
+            <span style={{ fontSize: 16 }}>{showFonts ? "▲" : "▼"}</span>
+            Шрифт: {FONTS.find(f => f.family === activeFont)?.name}
+          </button>
+
+          {showFonts && (
+            <div style={{
+              display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
+              gap: 10, marginTop: 12, padding: "0 8px",
+            }}>
+              {FONTS.map((f) => (
+                <button
+                  key={f.family}
+                  onClick={() => { setActiveFont(f.family); setShowFonts(false); }}
+                  style={{
+                    fontFamily: f.family,
+                    fontSize: 22,
+                    padding: "14px 12px 10px",
+                    borderRadius: 10,
+                    border: activeFont === f.family
+                      ? "1px solid rgba(255,215,0,0.6)"
+                      : "1px solid rgba(180,100,255,0.2)",
+                    background: activeFont === f.family
+                      ? "linear-gradient(135deg, rgba(255,215,0,0.12), rgba(255,180,0,0.04))"
+                      : "rgba(255,255,255,0.03)",
+                    color: activeFont === f.family ? "#ffd700" : "rgba(220,180,255,0.75)",
+                    cursor: "pointer", transition: "all 0.15s ease",
+                    textAlign: "left",
+                  }}
+                >
+                  <div>ЧЕМПИОН</div>
+                  <div style={{
+                    fontFamily: "'Oswald', sans-serif",
+                    fontSize: 10, letterSpacing: "0.15em",
+                    color: activeFont === f.family ? "rgba(255,215,0,0.6)" : "rgba(180,100,255,0.4)",
+                    marginTop: 4, textTransform: "uppercase",
+                  }}>
+                    {f.name} · {f.tag}
+                  </div>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* All previews small */}
-        <div className="flex gap-6 mt-12 items-end flex-wrap justify-center">
+        <div className="flex gap-6 mt-10 items-end flex-wrap justify-center">
           {layouts.map((l) => (
             <div
               key={l.id}
@@ -422,9 +495,9 @@ const Index = () => {
                   pointerEvents: "none",
                 }}
               >
-                {l.id === "horizontal" && <HorizontalLogo />}
-                {l.id === "vertical" && <VerticalLogo />}
-                {l.id === "square" && <SquareLogo />}
+                {l.id === "horizontal" && <HorizontalLogo font={activeFont} />}
+                {l.id === "vertical" && <VerticalLogo font={activeFont} />}
+                {l.id === "square" && <SquareLogo font={activeFont} />}
               </div>
             </div>
           ))}
