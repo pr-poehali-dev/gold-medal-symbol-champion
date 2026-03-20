@@ -100,7 +100,7 @@ function HorizontalLogo() {
             textTransform: "uppercase",
             fontWeight: 500,
           }}>
-            Клуб победителей
+            Спортивный центр
           </span>
           <StarAccent />
         </div>
@@ -171,7 +171,7 @@ function VerticalLogo() {
           letterSpacing: "0.3em",
           color: "rgba(255,215,0,0.7)",
           textTransform: "uppercase",
-        }}>Клуб победителей</span>
+        }}>Спортивный центр</span>
         <StarAccent />
       </div>
 
