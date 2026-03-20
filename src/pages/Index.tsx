@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const MEDAL_IMG = "https://cdn.poehali.dev/projects/022a832f-9252-4d4c-9f92-ce882da237a1/files/38260c4d-e2a9-4e99-8150-cf7c16bd55f6.jpg";
+const ATHLETE_IMG = "https://cdn.poehali.dev/projects/022a832f-9252-4d4c-9f92-ce882da237a1/files/150ffb3f-7a4e-4c74-af8c-48a29b7488d9.jpg";
 
 type Layout = "horizontal" | "vertical" | "square";
 
@@ -68,27 +69,18 @@ function HorizontalLogo() {
         transform: "skewX(-20deg)",
       }} />
 
-      {/* Medal */}
-      <div className="relative flex-shrink-0" style={{ width: 88, height: 88 }}>
+      {/* Athlete */}
+      <div className="relative flex-shrink-0" style={{ width: 96, height: 96 }}>
         <div style={{
-          position: "absolute", inset: -6,
-          background: "radial-gradient(circle, rgba(255,215,0,0.35) 0%, transparent 70%)",
+          position: "absolute", inset: -8,
+          background: "radial-gradient(circle, rgba(255,180,0,0.4) 0%, rgba(255,80,0,0.1) 50%, transparent 70%)",
           borderRadius: "50%",
-          animation: "pulse 2s ease-in-out infinite",
         }} />
         <img
-          src={MEDAL_IMG}
-          alt="Золотая медаль"
-          style={{ width: 88, height: 88, borderRadius: "50%", objectFit: "cover", position: "relative", zIndex: 1 }}
+          src={ATHLETE_IMG}
+          alt="Золотой спортсмен"
+          style={{ width: 96, height: 96, borderRadius: "50%", objectFit: "cover", objectPosition: "center top", position: "relative", zIndex: 1, border: "2px solid rgba(255,215,0,0.5)" }}
         />
-        <div style={{
-          position: "absolute", top: 6, left: 12, width: 20, height: 8,
-          background: "rgba(255,255,255,0.4)",
-          borderRadius: "50%",
-          filter: "blur(3px)",
-          transform: "rotate(-30deg)",
-          zIndex: 2,
-        }} />
       </div>
 
       {/* Text block */}
@@ -178,31 +170,23 @@ function VerticalLogo() {
         <StarAccent />
       </div>
 
-      {/* Medal */}
-      <div className="relative" style={{ width: 110, height: 110 }}>
+      {/* Athlete */}
+      <div className="relative" style={{ width: 120, height: 120 }}>
         <div style={{
           position: "absolute", inset: -10,
-          background: "radial-gradient(circle, rgba(255,215,0,0.3) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(255,180,0,0.35) 0%, rgba(255,80,0,0.08) 50%, transparent 70%)",
           borderRadius: "50%",
         }} />
         <div style={{
           position: "absolute", inset: -2,
           borderRadius: "50%",
-          border: "2px solid rgba(255,215,0,0.4)",
+          border: "2px solid rgba(255,215,0,0.45)",
         }} />
         <img
-          src={MEDAL_IMG}
-          alt="Золотая медаль"
-          style={{ width: 110, height: 110, borderRadius: "50%", objectFit: "cover", position: "relative", zIndex: 1 }}
+          src={ATHLETE_IMG}
+          alt="Золотой спортсмен"
+          style={{ width: 120, height: 120, borderRadius: "50%", objectFit: "cover", objectPosition: "center top", position: "relative", zIndex: 1 }}
         />
-        <div style={{
-          position: "absolute", top: 8, left: 16, width: 24, height: 10,
-          background: "rgba(255,255,255,0.35)",
-          borderRadius: "50%",
-          filter: "blur(4px)",
-          transform: "rotate(-30deg)",
-          zIndex: 2,
-        }} />
       </div>
 
       {/* Divider */}
@@ -261,26 +245,18 @@ function SquareLogo() {
       <div style={{ position: "absolute", bottom: 14, left: 14 }}><StarAccent /></div>
       <div style={{ position: "absolute", bottom: 14, right: 14 }}><StarAccent /></div>
 
-      {/* Medal */}
-      <div className="relative" style={{ width: 90, height: 90, marginBottom: 10 }}>
+      {/* Athlete */}
+      <div className="relative" style={{ width: 96, height: 96, marginBottom: 10 }}>
         <div style={{
           position: "absolute", inset: -8,
-          background: "radial-gradient(circle, rgba(255,215,0,0.25) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(255,180,0,0.3) 0%, rgba(255,80,0,0.08) 50%, transparent 70%)",
           borderRadius: "50%",
         }} />
         <img
-          src={MEDAL_IMG}
-          alt="Золотая медаль"
-          style={{ width: 90, height: 90, borderRadius: "50%", objectFit: "cover", position: "relative", zIndex: 1 }}
+          src={ATHLETE_IMG}
+          alt="Золотой спортсмен"
+          style={{ width: 96, height: 96, borderRadius: "50%", objectFit: "cover", objectPosition: "center top", position: "relative", zIndex: 1, border: "2px solid rgba(255,215,0,0.4)" }}
         />
-        <div style={{
-          position: "absolute", top: 6, left: 13, width: 20, height: 8,
-          background: "rgba(255,255,255,0.35)",
-          borderRadius: "50%",
-          filter: "blur(3px)",
-          transform: "rotate(-30deg)",
-          zIndex: 2,
-        }} />
       </div>
 
       {/* Title */}
