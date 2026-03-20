@@ -1,11 +1,443 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+
+const MEDAL_IMG = "https://cdn.poehali.dev/projects/022a832f-9252-4d4c-9f92-ce882da237a1/files/38260c4d-e2a9-4e99-8150-cf7c16bd55f6.jpg";
+
+type Layout = "horizontal" | "vertical" | "square";
+
+const layouts: { id: Layout; label: string; desc: string }[] = [
+  { id: "horizontal", label: "Горизонтальный", desc: "Для шапок, баннеров, печатных материалов" },
+  { id: "vertical", label: "Вертикальный", desc: "Для постеров, сторис, визиток" },
+  { id: "square", label: "Квадратный", desc: "Для аватаров, иконок, соцсетей" },
+];
+
+function GoldText({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <span
+      className={className}
+      style={{
+        background: "linear-gradient(135deg, #f5c842 0%, #ffd700 25%, #ffe878 50%, #d4a017 75%, #ffd700 100%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        backgroundClip: "text",
+      }}
+    >
+      {children}
+    </span>
+  );
+}
+
+function StarAccent() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ display: "inline-block" }}>
+      <polygon
+        points="12,2 14.5,9.5 22,9.5 16,14.5 18.5,22 12,17.5 5.5,22 8,14.5 2,9.5 9.5,9.5"
+        fill="url(#goldStar)"
+      />
+      <defs>
+        <linearGradient id="goldStar" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#ffd700" />
+          <stop offset="50%" stopColor="#ffe878" />
+          <stop offset="100%" stopColor="#d4a017" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+}
+
+function HorizontalLogo() {
+  return (
+    <div
+      className="relative flex items-center gap-6 px-10 py-6 overflow-hidden"
+      style={{
+        background: "linear-gradient(135deg, #2d0a5e 0%, #4a1090 40%, #1a0535 100%)",
+        borderRadius: 16,
+        minWidth: 520,
+        boxShadow: "0 0 60px rgba(180,80,255,0.3), 0 0 120px rgba(100,20,200,0.15), inset 0 1px 0 rgba(255,255,255,0.1)",
+        border: "1px solid rgba(180,100,255,0.3)",
+      }}
+    >
+      {/* Highlight streaks */}
+      <div style={{
+        position: "absolute", top: 0, left: "20%", width: 2, height: "100%",
+        background: "linear-gradient(180deg, transparent, rgba(255,215,0,0.15), transparent)",
+        transform: "skewX(-20deg)",
+      }} />
+      <div style={{
+        position: "absolute", top: 0, right: "30%", width: 1, height: "100%",
+        background: "linear-gradient(180deg, transparent, rgba(255,215,0,0.08), transparent)",
+        transform: "skewX(-20deg)",
+      }} />
+
+      {/* Medal */}
+      <div className="relative flex-shrink-0" style={{ width: 88, height: 88 }}>
+        <div style={{
+          position: "absolute", inset: -6,
+          background: "radial-gradient(circle, rgba(255,215,0,0.35) 0%, transparent 70%)",
+          borderRadius: "50%",
+          animation: "pulse 2s ease-in-out infinite",
+        }} />
+        <img
+          src={MEDAL_IMG}
+          alt="Золотая медаль"
+          style={{ width: 88, height: 88, borderRadius: "50%", objectFit: "cover", position: "relative", zIndex: 1 }}
+        />
+        <div style={{
+          position: "absolute", top: 6, left: 12, width: 20, height: 8,
+          background: "rgba(255,255,255,0.4)",
+          borderRadius: "50%",
+          filter: "blur(3px)",
+          transform: "rotate(-30deg)",
+          zIndex: 2,
+        }} />
+      </div>
+
+      {/* Text block */}
+      <div className="flex flex-col gap-1">
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          <StarAccent />
+          <span style={{
+            fontFamily: "'Oswald', sans-serif",
+            fontSize: 11,
+            letterSpacing: "0.25em",
+            color: "rgba(255,215,0,0.75)",
+            textTransform: "uppercase",
+            fontWeight: 500,
+          }}>
+            Клуб победителей
+          </span>
+          <StarAccent />
+        </div>
+        <div style={{
+          fontFamily: "'Bebas Neue', sans-serif",
+          fontSize: 52,
+          lineHeight: 1,
+          letterSpacing: "0.05em",
+          background: "linear-gradient(135deg, #f5c842 0%, #ffd700 30%, #ffe878 55%, #d4a017 100%)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+          textShadow: "none",
+          filter: "drop-shadow(0 2px 8px rgba(255,215,0,0.5))",
+        }}>
+          ЧЕМПИОН
+        </div>
+        <div style={{
+          width: "100%",
+          height: 2,
+          background: "linear-gradient(90deg, transparent, #ffd700, rgba(255,215,0,0.4), transparent)",
+        }} />
+      </div>
+    </div>
+  );
+}
+
+function VerticalLogo() {
+  return (
+    <div
+      className="relative flex flex-col items-center gap-4 px-10 py-10 overflow-hidden"
+      style={{
+        background: "linear-gradient(180deg, #2d0a5e 0%, #4a1090 50%, #1a0535 100%)",
+        borderRadius: 20,
+        width: 260,
+        boxShadow: "0 0 60px rgba(180,80,255,0.3), 0 0 120px rgba(100,20,200,0.15), inset 0 1px 0 rgba(255,255,255,0.1)",
+        border: "1px solid rgba(180,100,255,0.3)",
+      }}
+    >
+      {/* Corner decorations */}
+      <div style={{
+        position: "absolute", top: 12, left: 12, width: 30, height: 30,
+        borderTop: "2px solid rgba(255,215,0,0.5)", borderLeft: "2px solid rgba(255,215,0,0.5)",
+        borderRadius: "4px 0 0 0",
+      }} />
+      <div style={{
+        position: "absolute", top: 12, right: 12, width: 30, height: 30,
+        borderTop: "2px solid rgba(255,215,0,0.5)", borderRight: "2px solid rgba(255,215,0,0.5)",
+        borderRadius: "0 4px 0 0",
+      }} />
+      <div style={{
+        position: "absolute", bottom: 12, left: 12, width: 30, height: 30,
+        borderBottom: "2px solid rgba(255,215,0,0.5)", borderLeft: "2px solid rgba(255,215,0,0.5)",
+        borderRadius: "0 0 0 4px",
+      }} />
+      <div style={{
+        position: "absolute", bottom: 12, right: 12, width: 30, height: 30,
+        borderBottom: "2px solid rgba(255,215,0,0.5)", borderRight: "2px solid rgba(255,215,0,0.5)",
+        borderRadius: "0 0 4px 0",
+      }} />
+
+      {/* Top label */}
+      <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+        <StarAccent />
+        <span style={{
+          fontFamily: "'Oswald', sans-serif",
+          fontSize: 10,
+          letterSpacing: "0.3em",
+          color: "rgba(255,215,0,0.7)",
+          textTransform: "uppercase",
+        }}>Клуб победителей</span>
+        <StarAccent />
+      </div>
+
+      {/* Medal */}
+      <div className="relative" style={{ width: 110, height: 110 }}>
+        <div style={{
+          position: "absolute", inset: -10,
+          background: "radial-gradient(circle, rgba(255,215,0,0.3) 0%, transparent 70%)",
+          borderRadius: "50%",
+        }} />
+        <div style={{
+          position: "absolute", inset: -2,
+          borderRadius: "50%",
+          border: "2px solid rgba(255,215,0,0.4)",
+        }} />
+        <img
+          src={MEDAL_IMG}
+          alt="Золотая медаль"
+          style={{ width: 110, height: 110, borderRadius: "50%", objectFit: "cover", position: "relative", zIndex: 1 }}
+        />
+        <div style={{
+          position: "absolute", top: 8, left: 16, width: 24, height: 10,
+          background: "rgba(255,255,255,0.35)",
+          borderRadius: "50%",
+          filter: "blur(4px)",
+          transform: "rotate(-30deg)",
+          zIndex: 2,
+        }} />
+      </div>
+
+      {/* Divider */}
+      <div style={{
+        width: "80%", height: 1,
+        background: "linear-gradient(90deg, transparent, rgba(255,215,0,0.6), transparent)",
+      }} />
+
+      {/* Title */}
+      <div style={{
+        fontFamily: "'Bebas Neue', sans-serif",
+        fontSize: 48,
+        lineHeight: 1,
+        letterSpacing: "0.08em",
+        textAlign: "center",
+        background: "linear-gradient(135deg, #f5c842 0%, #ffd700 30%, #ffe878 55%, #d4a017 100%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        backgroundClip: "text",
+        filter: "drop-shadow(0 2px 10px rgba(255,215,0,0.5))",
+      }}>
+        ЧЕМПИОН
+      </div>
+
+      {/* Bottom divider */}
+      <div style={{
+        width: "60%", height: 1,
+        background: "linear-gradient(90deg, transparent, rgba(255,215,0,0.4), transparent)",
+      }} />
+    </div>
+  );
+}
+
+function SquareLogo() {
+  return (
+    <div
+      className="relative flex flex-col items-center justify-center overflow-hidden"
+      style={{
+        background: "linear-gradient(145deg, #3a0d7a 0%, #4a1090 40%, #1e0645 100%)",
+        borderRadius: 20,
+        width: 220,
+        height: 220,
+        boxShadow: "0 0 60px rgba(180,80,255,0.3), 0 0 120px rgba(100,20,200,0.15), inset 0 1px 0 rgba(255,255,255,0.1)",
+        border: "1px solid rgba(180,100,255,0.3)",
+      }}
+    >
+      {/* Radial glow bg */}
+      <div style={{
+        position: "absolute", inset: 0,
+        background: "radial-gradient(circle at 50% 45%, rgba(255,215,0,0.12) 0%, transparent 65%)",
+      }} />
+
+      {/* Corner stars */}
+      <div style={{ position: "absolute", top: 14, left: 14 }}><StarAccent /></div>
+      <div style={{ position: "absolute", top: 14, right: 14 }}><StarAccent /></div>
+      <div style={{ position: "absolute", bottom: 14, left: 14 }}><StarAccent /></div>
+      <div style={{ position: "absolute", bottom: 14, right: 14 }}><StarAccent /></div>
+
+      {/* Medal */}
+      <div className="relative" style={{ width: 90, height: 90, marginBottom: 10 }}>
+        <div style={{
+          position: "absolute", inset: -8,
+          background: "radial-gradient(circle, rgba(255,215,0,0.25) 0%, transparent 70%)",
+          borderRadius: "50%",
+        }} />
+        <img
+          src={MEDAL_IMG}
+          alt="Золотая медаль"
+          style={{ width: 90, height: 90, borderRadius: "50%", objectFit: "cover", position: "relative", zIndex: 1 }}
+        />
+        <div style={{
+          position: "absolute", top: 6, left: 13, width: 20, height: 8,
+          background: "rgba(255,255,255,0.35)",
+          borderRadius: "50%",
+          filter: "blur(3px)",
+          transform: "rotate(-30deg)",
+          zIndex: 2,
+        }} />
+      </div>
+
+      {/* Title */}
+      <div style={{
+        fontFamily: "'Bebas Neue', sans-serif",
+        fontSize: 36,
+        lineHeight: 1,
+        letterSpacing: "0.1em",
+        background: "linear-gradient(135deg, #f5c842 0%, #ffd700 30%, #ffe878 55%, #d4a017 100%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        backgroundClip: "text",
+        filter: "drop-shadow(0 2px 8px rgba(255,215,0,0.5))",
+        position: "relative",
+        zIndex: 1,
+      }}>
+        ЧЕМПИОН
+      </div>
+
+      {/* Bottom line */}
+      <div style={{
+        width: "55%", height: 1, marginTop: 6,
+        background: "linear-gradient(90deg, transparent, rgba(255,215,0,0.6), transparent)",
+      }} />
+    </div>
+  );
+}
 
 const Index = () => {
+  const [active, setActive] = useState<Layout>("horizontal");
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
+    <div
+      className="min-h-screen flex flex-col"
+      style={{
+        background: "linear-gradient(160deg, #0f0020 0%, #1a0035 50%, #0a001a 100%)",
+        fontFamily: "'Montserrat', sans-serif",
+      }}
+    >
+      {/* Header */}
+      <div className="flex flex-col items-center pt-12 pb-6 px-4">
+        <p style={{
+          fontFamily: "'Oswald', sans-serif",
+          fontSize: 11,
+          letterSpacing: "0.4em",
+          color: "rgba(180,100,255,0.7)",
+          textTransform: "uppercase",
+          marginBottom: 8,
+        }}>
+          Логотип
+        </p>
+        <h1 style={{
+          fontFamily: "'Bebas Neue', sans-serif",
+          fontSize: "clamp(36px, 6vw, 64px)",
+          letterSpacing: "0.12em",
+          background: "linear-gradient(135deg, #c87bff 0%, #a040ff 50%, #7b00d4 100%)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+          lineHeight: 1,
+          marginBottom: 4,
+        }}>
+          ЧЕМПИОН
+        </h1>
+        <p style={{ color: "rgba(200,150,255,0.5)", fontSize: 13 }}>
+          Три макета · Спортивный стиль · Золото на фиолетовом
+        </p>
+      </div>
+
+      {/* Tabs */}
+      <div className="flex justify-center gap-3 px-4 mb-10">
+        {layouts.map((l) => (
+          <button
+            key={l.id}
+            onClick={() => setActive(l.id)}
+            style={{
+              fontFamily: "'Oswald', sans-serif",
+              fontSize: 13,
+              letterSpacing: "0.1em",
+              padding: "8px 20px",
+              borderRadius: 8,
+              border: active === l.id
+                ? "1px solid rgba(255,215,0,0.6)"
+                : "1px solid rgba(180,100,255,0.25)",
+              background: active === l.id
+                ? "linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,180,0,0.05))"
+                : "rgba(255,255,255,0.04)",
+              color: active === l.id ? "#ffd700" : "rgba(200,150,255,0.6)",
+              cursor: "pointer",
+              transition: "all 0.2s ease",
+              textTransform: "uppercase",
+            }}
+          >
+            {l.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Logo display */}
+      <div className="flex-1 flex flex-col items-center justify-center px-4 pb-12">
+
+        {/* Canvas */}
+        <div
+          className="flex items-center justify-center"
+          style={{
+            background: "rgba(255,255,255,0.03)",
+            border: "1px dashed rgba(180,100,255,0.2)",
+            borderRadius: 24,
+            padding: "60px 80px",
+            minWidth: 340,
+            minHeight: 240,
+            position: "relative",
+          }}
+        >
+          <div style={{
+            position: "absolute", top: 12, left: 16,
+            fontSize: 10,
+            letterSpacing: "0.2em",
+            color: "rgba(180,100,255,0.3)",
+            fontFamily: "'Oswald', sans-serif",
+            textTransform: "uppercase",
+          }}>
+            {layouts.find(l => l.id === active)?.desc}
+          </div>
+
+          {active === "horizontal" && <HorizontalLogo />}
+          {active === "vertical" && <VerticalLogo />}
+          {active === "square" && <SquareLogo />}
+        </div>
+
+        {/* All previews small */}
+        <div className="flex gap-6 mt-12 items-end flex-wrap justify-center">
+          {layouts.map((l) => (
+            <div
+              key={l.id}
+              onClick={() => setActive(l.id)}
+              style={{
+                cursor: "pointer",
+                opacity: active === l.id ? 1 : 0.45,
+                transition: "opacity 0.2s",
+                transform: active === l.id ? "scale(1)" : "scale(0.92)",
+              }}
+            >
+              <div
+                style={{
+                  transform: "scale(0.42)",
+                  transformOrigin: "top center",
+                  pointerEvents: "none",
+                }}
+              >
+                {l.id === "horizontal" && <HorizontalLogo />}
+                {l.id === "vertical" && <VerticalLogo />}
+                {l.id === "square" && <SquareLogo />}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
