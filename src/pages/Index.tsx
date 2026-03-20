@@ -69,18 +69,23 @@ function HorizontalLogo() {
         transform: "skewX(-20deg)",
       }} />
 
-      {/* Athlete */}
-      <div className="relative flex-shrink-0" style={{ width: 96, height: 96 }}>
+      {/* Medal */}
+      <div className="relative flex-shrink-0" style={{ width: 92, height: 92 }}>
         <div style={{
           position: "absolute", inset: -8,
-          background: "radial-gradient(circle, rgba(255,180,0,0.4) 0%, rgba(255,80,0,0.1) 50%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(255,215,0,0.4) 0%, transparent 70%)",
           borderRadius: "50%",
         }} />
         <img
-          src={ATHLETE_IMG}
-          alt="Золотой спортсмен"
-          style={{ width: 96, height: 96, borderRadius: "50%", objectFit: "cover", objectPosition: "center top", position: "relative", zIndex: 1, border: "2px solid rgba(255,215,0,0.5)" }}
+          src={MEDAL_IMG}
+          alt="Золотая медаль"
+          style={{ width: 92, height: 92, borderRadius: "50%", objectFit: "cover", position: "relative", zIndex: 1, border: "2px solid rgba(255,215,0,0.5)" }}
         />
+        <div style={{
+          position: "absolute", top: 7, left: 13, width: 20, height: 8,
+          background: "rgba(255,255,255,0.45)", borderRadius: "50%",
+          filter: "blur(3px)", transform: "rotate(-30deg)", zIndex: 2,
+        }} />
       </div>
 
       {/* Text block */}
@@ -170,11 +175,11 @@ function VerticalLogo() {
         <StarAccent />
       </div>
 
-      {/* Athlete */}
-      <div className="relative" style={{ width: 120, height: 120 }}>
+      {/* Medal */}
+      <div className="relative" style={{ width: 116, height: 116 }}>
         <div style={{
           position: "absolute", inset: -10,
-          background: "radial-gradient(circle, rgba(255,180,0,0.35) 0%, rgba(255,80,0,0.08) 50%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(255,215,0,0.35) 0%, transparent 70%)",
           borderRadius: "50%",
         }} />
         <div style={{
@@ -183,10 +188,15 @@ function VerticalLogo() {
           border: "2px solid rgba(255,215,0,0.45)",
         }} />
         <img
-          src={ATHLETE_IMG}
-          alt="Золотой спортсмен"
-          style={{ width: 120, height: 120, borderRadius: "50%", objectFit: "cover", objectPosition: "center top", position: "relative", zIndex: 1 }}
+          src={MEDAL_IMG}
+          alt="Золотая медаль"
+          style={{ width: 116, height: 116, borderRadius: "50%", objectFit: "cover", position: "relative", zIndex: 1 }}
         />
+        <div style={{
+          position: "absolute", top: 9, left: 17, width: 24, height: 10,
+          background: "rgba(255,255,255,0.38)", borderRadius: "50%",
+          filter: "blur(4px)", transform: "rotate(-30deg)", zIndex: 2,
+        }} />
       </div>
 
       {/* Divider */}
@@ -245,18 +255,23 @@ function SquareLogo() {
       <div style={{ position: "absolute", bottom: 14, left: 14 }}><StarAccent /></div>
       <div style={{ position: "absolute", bottom: 14, right: 14 }}><StarAccent /></div>
 
-      {/* Athlete */}
-      <div className="relative" style={{ width: 96, height: 96, marginBottom: 10 }}>
+      {/* Medal */}
+      <div className="relative" style={{ width: 94, height: 94, marginBottom: 10 }}>
         <div style={{
           position: "absolute", inset: -8,
-          background: "radial-gradient(circle, rgba(255,180,0,0.3) 0%, rgba(255,80,0,0.08) 50%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(255,215,0,0.3) 0%, transparent 70%)",
           borderRadius: "50%",
         }} />
         <img
-          src={ATHLETE_IMG}
-          alt="Золотой спортсмен"
-          style={{ width: 96, height: 96, borderRadius: "50%", objectFit: "cover", objectPosition: "center top", position: "relative", zIndex: 1, border: "2px solid rgba(255,215,0,0.4)" }}
+          src={MEDAL_IMG}
+          alt="Золотая медаль"
+          style={{ width: 94, height: 94, borderRadius: "50%", objectFit: "cover", position: "relative", zIndex: 1, border: "2px solid rgba(255,215,0,0.45)" }}
         />
+        <div style={{
+          position: "absolute", top: 7, left: 14, width: 20, height: 8,
+          background: "rgba(255,255,255,0.38)", borderRadius: "50%",
+          filter: "blur(3px)", transform: "rotate(-30deg)", zIndex: 2,
+        }} />
       </div>
 
       {/* Title */}
